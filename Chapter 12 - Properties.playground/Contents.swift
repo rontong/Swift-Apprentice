@@ -1,7 +1,7 @@
 import Foundation
 
 // Swift Apprentice
-// Chapter 11: Properties
+// Chapter 12: Properties
 
 // Mini-exercise 1
 
