@@ -119,6 +119,7 @@ extension Student {
 }
 
 // Challenge A
+print("*** Challenge A")
 
 class User {
 
@@ -151,5 +152,84 @@ class List {
 }
 
 let mike = User()
+let mikeList = List(name: "Mike List")
+mike.addList(list: mikeList)
+mike.listForName(name: "Mike List")?.printList()
+
+let maddie = User()
+let maddieList = mikeList
+maddieList.set.append("The Room")
+mikeList.printList()
+maddieList.printList()
+
+// Challenge B
+print("*** Challenge B")
+
+class Tshirt {
+    var size : Int
+    var color : String
+    var price : Double
+    
+    init(size: Int, color: String, price: Double) {
+        self.size = size
+        self.color = color
+        self.price = price
+    }
+}
+
+class TshirtUser {
+    var name : String
+    var email : String
+    var shoppingCart : ShoppingCart?
+    
+    init(name: String, email: String) {
+        self.name = name
+        self.email = email
+    }
+}
+
+struct Address {
+    var name : String
+    var street : String
+    var city : String
+    var zip : Int
+}
+
+class ShoppingCart {
+    let user : TshirtUser
+    var order : [Tshirt]?
+    var address : Address
+    
+    init(user: TshirtUser, address: Address){
+        self.user = user
+        self.address = address
+    }
+    
+    func cost() -> Double {
+        var cost = 0.0
+        if let allItems = order {
+            let total = allItems.reduce(0){
+                return $0 + $1.price
+            }
+            cost = total
+        }
+        return cost
+    }
+}
+
+let redTShirt = Tshirt(size: 7, color: "Red", price: 20.0)
+let blueTShirt = Tshirt(size: 8, color: "Blue", price: 52.5)
+
+let tony = TshirtUser(name: "Tony", email: "tony@tony.com")
+let tonyAddress = Address(name: "Tony", street: "20 Tony Street", city: "TonyTown", zip: 9000)
+
+let tonyCart = ShoppingCart(user: tony, address: tonyAddress)
+
+tonyCart.order = [Tshirt]()
+tonyCart.order?.append(redTShirt)
+tonyCart.order?.append(blueTShirt)
+let finalCost = tonyCart.cost()
+
+print("Final order \(tonyCart.order), shipping address \(tonyCart.address). Total cost is \(finalCost)")
 
 
