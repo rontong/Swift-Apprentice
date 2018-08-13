@@ -1,5 +1,5 @@
 // Swift Apprentice
-// Chapter 12: Properties
+// Chapter 13: Methods
 
 // Mini-exercise 1, Challenge 2
 
